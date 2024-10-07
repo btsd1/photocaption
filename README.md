@@ -1,0 +1,1 @@
+The cookie management on this app is not as secure as it should be. This is intentaionl, in order to facilitate sessions over the public suffix [app]onrender.com, which is a public suffix and therefore the cookie can't be domain restricted.
