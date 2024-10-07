@@ -1,27 +1,25 @@
-// models/Users.js
+import { Model, DataTypes } from 'sequelize';
+import { sequelize } from '../sequelize.js';
 
-import { DataTypes } from 'sequelize';
-import {sequelize} from '../sequelize.js'; // Adjust the path as necessary to your Sequelize instance
+class Users extends Model {}
 
-const Users = sequelize.define('Users', {
+Users.init({
   id: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
+  email: {
+    type: DataTypes.STRING,
+    unique: true
   },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }, {
-  tableName: 'Users',
-  timestamps: true // Automatically manages `createdAt` and `updatedAt` fields
+  sequelize,
+  tableName: 'Users'
 });
 
 export default Users;
