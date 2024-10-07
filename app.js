@@ -45,7 +45,7 @@ sequelize.sync().then(() => {
     console.log('Database & tables created!');
 });
 
-if (process.NODE_ENV == 'production'){
+if (process.env.NODE_ENV == 'production'){
     console.log('Trusting Render proxy')
     app.set('trust proxy', 1); // Trust the first proxy
 }
