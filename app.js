@@ -9,6 +9,11 @@ import { transaction } from './sequelize.js';
 import Pics from './models/Pic.js';
 import bcrypt from 'bcrypt';
 import NodeCache from 'node-cache';
+import SequelizeStore from 'connect-session-sequelize';
+import { sequelize } from './sequelize.js'; // Assuming you have a Sequelize instance exported from your models
+
+const SequelizeSessionStore = SequelizeStore(session.Store);
+
 
 const cache = new NodeCache({
     stdTTL: 100,
@@ -21,6 +26,10 @@ const PORT = config.PORT
 
 app.use(express.json())
 app.use(session({
+    store: new SequelizeSessionStore({
+        db: sequelize,
+        tableName: 'Sessions' // Customize the table name if needed
+    }),
     secret: config.sessionSecret,
     resave: false,
     saveUninitialized: false,
@@ -31,6 +40,10 @@ app.use(session({
     }
 
 }))
+
+sequelize.sync().then(() => {
+    console.log('Database & tables created!');
+});
 
 app.use(passport.initialize())
 app.use(passport.session())
