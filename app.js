@@ -23,7 +23,7 @@ const maxPicsCached = 10
 
 const app = express();
 const PORT = config.PORT
-
+console.log('env is ', process.env.NODE_ENV)
 app.use(express.json())
 app.use(session({
     store: new SequelizeSessionStore({
@@ -45,6 +45,10 @@ sequelize.sync().then(() => {
     console.log('Database & tables created!');
 });
 
+if (process.NODE_ENV == 'production'){
+    console.log('Trusting Render proxy')
+    app.set('trust proxy', 1); // Trust the first proxy
+}
 app.use(passport.initialize())
 app.use(passport.session())
 
