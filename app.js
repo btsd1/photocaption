@@ -10,7 +10,7 @@ import Pics from './models/Pic.js';
 import bcrypt from 'bcrypt';
 import NodeCache from 'node-cache';
 import SequelizeStore from 'connect-session-sequelize';
-import { sequelize } from './sequelize.js'; // Assuming you have a Sequelize instance exported from your models
+import { sequelize } from './sequelize.js';
 
 const SequelizeSessionStore = SequelizeStore(session.Store);
 
