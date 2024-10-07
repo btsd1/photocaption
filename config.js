@@ -9,5 +9,6 @@ export default {
     SUPABASE_DB_USERNAME: process.env.SUPABASE_DB_USERNAME,
     PORT: process.env.PORT,
     SUPABASE_API_URL: process.env.SUPABASE_API_URL,
-    SUPABASE_API_KEY: process.env.SUPABASE_API_KEY
+    SUPABASE_API_KEY: process.env.SUPABASE_API_KEY,
+    sessionSecret: process.env.SESSION_SECRET
 }
